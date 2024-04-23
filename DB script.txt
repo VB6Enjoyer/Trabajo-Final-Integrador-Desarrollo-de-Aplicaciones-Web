@@ -1,0 +1,100 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema tfi_db
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema tfi_db
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `tfi_db` DEFAULT CHARACTER SET utf8 ;
+USE `tfi_db` ;
+
+-- -----------------------------------------------------
+-- Table `tfi_db`.`usuarios`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tfi_db`.`usuarios` (
+  `idUsuarios` INT NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(72) NOT NULL,
+  `apellido` VARCHAR(255) NOT NULL,
+  `nombre` VARCHAR(255) NOT NULL,
+  `estado` ENUM('Pendiente', 'Finalizado', 'Eliminado') NOT NULL DEFAULT 'Pendiente',
+  `username` VARCHAR(255) NOT NULL,
+  `rol` ENUM('Administrador', 'Ejecutor') NOT NULL,
+  PRIMARY KEY (`idUsuarios`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tfi_db`.`actividades`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tfi_db`.`actividades` (
+  `idActividades` INT NOT NULL,
+  `descripción` LONGTEXT NOT NULL,
+  `prioridad` ENUM('Alta', 'Media', 'Baja') NOT NULL,
+  `fecha_modificacion` DATETIME NOT NULL,
+  `estado` ENUM('Pendiente', 'Finalizado', 'Eliminado') NULL DEFAULT 'Pendiente',
+  `idUsuario_actual` INT NOT NULL,
+  `idUsuario_modificacion` INT NOT NULL,
+  PRIMARY KEY (`idActividades`),
+  INDEX `fk_actividades_usuarios1_idx` (`idUsuario_actual` ASC),
+  INDEX `fk_actividades_usuarios2_idx` (`idUsuario_modificacion` ASC),
+  CONSTRAINT `fk_actividades_usuarios1`
+    FOREIGN KEY (`idUsuario_actual`)
+    REFERENCES `tfi_db`.`usuarios` (`idUsuarios`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_actividades_usuarios2`
+    FOREIGN KEY (`idUsuario_modificacion`)
+    REFERENCES `tfi_db`.`usuarios` (`idUsuarios`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tfi_db`.`actividades_autoria`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tfi_db`.`actividades_autoria` (
+  `idActividades_autoria` INT NOT NULL,
+  `descripcion` LONGTEXT NOT NULL,
+  `prioridad` ENUM('Alta', 'Media', 'Baja') NOT NULL,
+  `fecha_modificacion` DATETIME NOT NULL,
+  `estado` ENUM('Pendiente', 'Finalizado', 'Eliminado') NULL DEFAULT 'Pendiente',
+  `operacion` ENUM('Creación', 'Modificación', 'Eliminación') NULL,
+  `idUsuario_actual` INT NOT NULL,
+  `idUsuario_modificacion` INT NOT NULL,
+  `idActividad` INT NOT NULL,
+  PRIMARY KEY (`idActividades_autoria`),
+  INDEX `fk_actividades_autoria_usuarios_idx` (`idUsuario_actual` ASC),
+  INDEX `fk_actividades_autoria_actividades1_idx` (`idActividad` ASC),
+  INDEX `fk_actividades_autoria_usuarios1_idx` (`idUsuario_modificacion` ASC),
+  CONSTRAINT `fk_actividades_autoria_usuarios`
+    FOREIGN KEY (`idUsuario_actual`)
+    REFERENCES `tfi_db`.`usuarios` (`idUsuarios`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_actividades_autoria_actividades1`
+    FOREIGN KEY (`idActividad`)
+    REFERENCES `tfi_db`.`actividades` (`idActividades`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_actividades_autoria_usuarios1`
+    FOREIGN KEY (`idUsuario_modificacion`)
+    REFERENCES `tfi_db`.`usuarios` (`idUsuarios`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+GRANT ALL PRIVILEGES ON tfi_db.* TO 'username'@'localhost' IDENTIFIED BY 'password';
+FLUSH PRIVILEGES;

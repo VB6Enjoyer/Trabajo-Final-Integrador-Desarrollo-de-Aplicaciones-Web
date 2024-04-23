@@ -11,7 +11,7 @@ import { AppService } from './app.service';
       port: 3306,
       username: 'username',
       password: 'password',
-      database: 'tif_db',
+      database: 'tfi_db',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
