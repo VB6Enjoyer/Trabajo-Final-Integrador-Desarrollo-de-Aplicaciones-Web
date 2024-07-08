@@ -1,0 +1,9 @@
+vs code: https://code.visualstudio.com/
+
+mysql: https://dev.mysql.com/downloads/ recomendado versión 8
+
+node: https://nodejs.org/en recomendado versión 20
+
+nest: https://docs.nestjs.com/ recomendado versión 10
+
+postman: https://www.postman.com/
