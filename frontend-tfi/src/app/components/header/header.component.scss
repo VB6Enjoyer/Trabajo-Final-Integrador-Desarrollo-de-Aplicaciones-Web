@@ -1,0 +1,25 @@
+header {
+    height: 20vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color:rgba(131, 54, 253, 0.418);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    z-index: 2;
+  }img{
+    vertical-align: middle;
+    justify-content:center;
+    width: 5%;
+  }
+  @media only screen and (min-height: 400px) {
+    header {
+      height: 10vh;
+    }
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }

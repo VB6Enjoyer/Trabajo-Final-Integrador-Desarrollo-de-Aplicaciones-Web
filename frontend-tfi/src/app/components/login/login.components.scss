@@ -1,0 +1,33 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(90, 65, 255);
+  }img{
+    vertical-align: middle;
+    justify-content:center;
+    margin: 10%;
+    width: 20%;
+  }
+  
+  #inicio-de-sesion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.712);
+    margin: 10%;
+    padding: 5rem;
+    border-radius: 20px;
+    min-height: 20rem;
+  }
+  
+  label {
+    margin-bottom: 1rem;
+  }
+  
+  h1 {
+    color:rgb(90, 65, 255);
+    font-size: 1.5rem;
+    text-align: center;
+  }

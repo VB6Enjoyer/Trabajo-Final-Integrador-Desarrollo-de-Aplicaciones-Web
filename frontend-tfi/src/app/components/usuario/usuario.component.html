@@ -1,0 +1,82 @@
+<router-outlet>
+<img id="logo" alt="DGN" src="../../../assets/logotfiblanco.png">
+<div id="usuario">
+  <p-button
+  [rounded]="true"
+  class="accion"
+  icon="pi pi-arrow-left"
+  severity="secondary"
+  (onClick)="administradorpad()"         
+  pTooltip="Volver a la lista de Actividades"
+  ></p-button>
+<h1>CREAR USUARIO <i class="pi pi-user-plus" style="color: #708090; font-size: 5rem; align-self: center;"></i> </h1>
+  <form [formGroup]="form">
+    <div class="input-container">
+      <label for="nombre">Nombre: </label>
+      <textarea
+        rows="1"
+        cols="30"
+        pInputTextarea
+        id="nombre"
+        formControlName="nombre"
+      ></textarea>
+    </div>
+    <div class="input-container">
+      <label for="apellido">Apellido: </label>
+      <textarea
+        rows="1"
+        cols="30"
+        pInputTextarea
+        id="apellido"
+        formControlName="apellido"
+      ></textarea>
+    </div>
+    <div class="input-container">
+      <label for="nombreUsuario">Nombre de usuario: </label>
+      <textarea
+        rows="1"
+        cols="30"
+        pInputTextarea
+        id="nombreUsuario"
+        formControlName="nombreUsuario"
+      ></textarea>
+    </div>
+    <div class="input-container">
+      <label for="email">Correo electrónico: </label>
+      <textarea
+        rows="1"
+        cols="30"
+        pInputTextarea
+        id="email"
+        formControlName="email"
+      ></textarea>
+    </div>
+    <div class="contenedor-input">
+      <label for="password">Clave: </label>
+      <p-password id="password" formControlName="password" [toggleMask]="true" [feedback]="false"></p-password>
+    </div>
+    <div class="input-container">
+      <label for="estado">Estado: </label>
+      <p-dropdown
+        id="estado"
+        appendTo="body"
+        [options]="estado"
+        placeholder="Seleccionar"
+        formControlName="estado"
+      ></p-dropdown>
+    </div>
+    <div class="input-container">
+      <label for="rol">Rol: </label>
+      <p-dropdown
+        id="rol"
+        appendTo="body"
+        [options]="roles"
+        placeholder="Seleccionar"
+        formControlName="rol"
+      ></p-dropdown>
+    </div>
+    <p-button [label]="accion" (onClick)="enviar()" label="Submit" icon="pi pi-check" iconPos="right" severity="secondary"></p-button>
+  </form>
+</div>
+<p-toast></p-toast>
+</router-outlet>

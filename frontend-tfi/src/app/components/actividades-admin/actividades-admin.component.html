@@ -1,0 +1,61 @@
+<app-base>
+    <app-tabla-actividades
+      #t
+      [valores]="actividades"
+      [(filaSeleccionada)]="actividadSeleccionada"
+      [columnas]="columnas"
+    >
+      <div>
+        <p-button
+          class="accion"
+          id="añadir"
+          [rounded]="true" severity="secondary" 
+          label="Añadir"
+          icon="pi pi-plus"
+          (onClick)="nuevo()"
+        ></p-button>
+        <p-button
+          class="accion"
+          icon="pi pi-file"
+          label="Exportar"
+          [rounded]="true" severity="secondary" 
+          (onClick)="t.table.exportCSV()"
+          pTooltip="Exportar"
+        ></p-button>
+      </div>
+      
+      <div>
+        <p-button
+          class="accion"
+          icon="pi pi-pencil"
+          severity="secondary"
+          (onClick)="editar()"
+          [rounded]="true"
+          pTooltip="Editar"
+          [disabled]="!this.actividadSeleccionada"
+        ></p-button>
+        <p-button
+          class="accion"
+          icon="pi pi-bars"
+          pTooltip="Auditoria"
+          severity="secondary"
+          [rounded]="true"
+          [disabled]="!this.actividadSeleccionada"
+          (onClick)="auditoria()"
+        ></p-button>
+        <p-button
+          class="accion"
+          icon="pi pi-user-plus"
+          pTooltip="Crear usuario"
+          severity="secondary"
+          [rounded]="true"
+          (onClick)="crearUsuario()"
+        ></p-button></div
+    ></app-tabla-actividades>
+  </app-base>
+  <app-actividad-dialog
+    [(visible)]="dialogVisible"
+    [accion]="accion"
+    [actividad]="actividadSeleccionada"
+    (refrescar)="llenarTabla()"
+  />

@@ -1,0 +1,27 @@
+<app-base>
+    <app-tabla-actividades
+      #t
+      [valores]="actividadesEjecutor"
+      [(filaSeleccionada)]="actividadSeleccionada"
+      [columnas]="columnas"
+    >
+      <div>
+        <p-button
+          class="accion"
+          icon="pi pi-check"
+          severity="secondary"
+          (onClick)="marcarfinalizado()"
+          pTooltip="Marcar como finalizada"
+          [disabled]="!this.actividadSeleccionada"
+        ></p-button>
+        <p-button
+        class="accion"
+        icon="pi pi-times"
+        severity="secondary"
+        (onClick)="eliminar()"
+        pTooltip="Eliminar actividad"
+        [disabled]="!this.actividadSeleccionada"
+      ></p-button>
+        </div
+    ></app-tabla-actividades>
+  </app-base>

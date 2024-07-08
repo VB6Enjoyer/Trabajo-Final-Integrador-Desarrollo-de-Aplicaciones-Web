@@ -1,0 +1,37 @@
+:host {
+  display:flex;
+  justify-content: left;
+  height:100%;
+  width: 100%;
+  background-color: rgb(90, 65, 255);
+  padding: 2%;
+}img{
+  vertical-align: middle;
+  justify-content:center;
+  margin: 5%;
+  width: 20%;
+  height: 25%;
+}
+
+#usuario {
+  float: right;
+  width: 60%;
+  display:inline-block;
+  flex-direction:row;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.712);
+  margin: 1%;
+  padding: 1rem;
+  border-radius: 20px;
+  min-height: 1rem;
+}
+
+label {
+  margin-bottom: 1rem;
+}
+
+h1 {
+  color:rgb(90, 65, 255);
+  font-size: 1.5rem;
+  text-align: center;
+}

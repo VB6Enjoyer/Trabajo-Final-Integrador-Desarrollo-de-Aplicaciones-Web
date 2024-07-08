@@ -1,0 +1,19 @@
+<app-base>
+
+  <app-tabla-actividades
+      #t
+      [valores]="auditoriaDto"
+      [(filaSeleccionada)]="actividadSeleccionada"
+      [columnas]="columnas"
+    >
+    <p-button
+    [rounded]="true"
+    class="accion"
+    icon="pi pi-arrow-left"
+    severity="secondary"
+    routerLink="/admin"          
+    pTooltip="Volver a la lista de Actividades"
+  ></p-button>
+  <h1>AUDITORIA</h1>
+  </app-tabla-actividades>
+</app-base>
